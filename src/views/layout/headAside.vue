@@ -50,9 +50,12 @@
     },
     mounted(){
       let currentUser = localStorage.getItem("currentUser");
-      this.currentUser = JSON.parse(currentUser);
-      if(this.currentUser.userName){
+      let userJson = JSON.parse(currentUser);
+      if(userJson !== "{}" && userJson.userName){
+        this.currentUser = userJson;
         this.style=`width: 60px;height: 60px;border-radius: 30px;margin:0 auto;background-size: 100%;background-image: url(${this[this.currentUser.photo]})`;
+      }else{
+        this.currentUser = {};
       }
     },
     filters: {
